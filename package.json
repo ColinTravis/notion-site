@@ -1,0 +1,26 @@
+{
+  "name": "notion-site",
+  "version": "1.0.0",
+  "description": "Site updated from Notion",
+  "author": "Colin Travis",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.4.0",
+    "rfs": "^8.0.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.16.4",
+    "tailwindcss": "^0.7.0"
+  }
+}
