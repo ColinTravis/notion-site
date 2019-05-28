@@ -38,10 +38,10 @@ export default {
       .update(JSON.stringify(notionData))
       .digest('hex')
 
-    if (res) {
+    // if (res) {
       res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
       res.setHeader('X-version', etag)
-    }
+    // }
     console.log('Notion Data', notionData)
     console.log('Etag', etag)
     return {
