@@ -6,24 +6,25 @@
 import getNotionData from '../data/notion'
 
 export default function Page({ sections, etag, meta }) {
-//   const focused = useFocus()
-//   useEffect(() => {
-//     if (focused) {
-//       fetch(window.location, {
-//         headers: {
-//           pragma: 'no-cache'
-//         }
-//       }).then(res => {
-//         if (res.ok && res.headers.get('x-version') !== etag) {
-//           window.location.reload()
-//         }
-//       })
-//     }
-//   }, [focused])
 
-//   const color = Color(meta.color ? meta.color[0][0] : '#49fcd4')
-//   const color2 = color.darken(0.4)
-//   const color3 = color2.lighten(0.1)
+  const focused = useFocus()
+  useEffect(() => {
+    if (focused) {
+      fetch(window.location, {
+        headers: {
+          pragma: 'no-cache'
+        }
+      }).then(res => {
+        if (res.ok && res.headers.get('x-version') !== etag) {
+          window.location.reload()
+        }
+      })
+    }
+  }, [focused])
+
+  const color = Color(meta.color ? meta.color[0][0] : '#49fcd4')
+  const color2 = color.darken(0.4)
+  const color3 = color2.lighten(0.1)
 
 
 //  RETURN
@@ -31,13 +32,6 @@ export default function Page({ sections, etag, meta }) {
 
 //   return (
 //     <Layout>
-//       <Head>
-//         {meta.title && <title>{meta.title[0][0]}</title>}
-//         {meta.description && (
-//           <meta name="description" content={meta.description[0][0]} />
-//         )}
-//       </Head>
-
 //       {sections.map((section, i) => {
 //         return (
 //           <section
