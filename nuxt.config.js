@@ -13,7 +13,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
@@ -48,11 +48,17 @@ export default {
   /*
    ** Build configuration
    */
+
   build: {
+    extend(config, { isDev, isClient }) {
+      config.node = {
+        fs: 'empty'
+      }
+    },
     postcss: {
       plugins: {
         autoprefixer: {},
-        tailwindcss: {},
+        tailwindcss: {}
       }
     },
     extractCSS: true

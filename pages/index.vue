@@ -12,7 +12,7 @@
         <!-- <h1>Color: {{notionData.meta.color[0][0]}}</h1> -->
         <h2 class="text-lg"></h2>
         <div class="text-purple-500"></div>
-        <div class="text-gray-600"></div>
+        <div class="text-gray-600"></div> 
         <div class="text-gray-600"></div>
       </div>
     </div>
@@ -33,26 +33,37 @@ export default {
 
   async asyncData({ res }) {
     const notionData = await getNotionData()
+    // const etag = await generateETag(JSON.stringify(notionData))
     const etag = require('crypto')
       .createHash('md5')
       .update(JSON.stringify(notionData))
       .digest('hex')
-
-    // if (res) {
+    if (res) {
       res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
-      res.setHeader('X-version', etag)
-    // }
-    console.log('Notion Data', notionData)
-    console.log('Etag', etag)
+      res.setHeader("X-version", etag)
+    }
+    // console.log('Notion Data', notionData)
+    // console.log('Etag', etag)
     return {
       notionData,
       sections: notionData.sections,
       meta: notionData.meta,
-      etag
+      etag: etag
     }
   },
 
   methods: {},
+    mounted () {
+    fetch(window.location, {
+          headers: {
+            pragma: "no-cache"
+          }
+        }).then(res => {
+          if (res.ok && res.headers.get("x-version") !== this.etag) {
+            window.location.reload()
+          }
+    })
+  },
 
   // async asyncData() {
   //   const { data } = await api.post(
