@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
-    <div class="bg-white mx-auto rounded-lg p-6 shadow-md w-2">
+  <div class="flex content-center justify-center">
+    <div class="bg-white rounded-lg w-50 p-2 shadow-md">
       <!-- <img class="h-16 w-16 rounded-full mx-auto" src="avatar.jpg"> -->
       <div class="text-center">
+        <h1>Title: {{notionData.meta.title[0][0]}}</h1>
+        <h1>Description: {{notionData.meta.description[0][0]}}</h1>
+        <h1>Color: {{notionData.meta.color[0][0]}}</h1>
         <h2 class="text-lg"></h2>
         <div class="text-purple-500"></div>
         <div class="text-gray-600"></div>
@@ -28,13 +31,12 @@ export default {
       res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
       res.setHeader('X-version', etag)
     }
-
-    return { ...notionData, etag }
+      console.log('Notion Data', notionData)
+    return { notionData, etag }
   },
 
   methods: {
     logVal() {
-      console.log('Notion Data', notionData)
     }
   },
   // async asyncData() {
